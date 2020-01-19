@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spire-v2</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="input">
+  <h3>Input width and height (max 3 digits).</h3>
+  <form action="#" onsubmit="return false">
+    <label for="width">Width: </label><input type="text" name="width" id="width" maxlength="3" pattern="^[0-9]{1,3}$" required title="Three digit number max">
+    <label for="height">Height: </label><input type="text" name="width" id="height" maxlength="3" pattern="^[0-9]{1,3}$" required title="Three digit number max">
+    <button id="btn-draw-table">Draw table</button>
+  </form>
+</div>
+</body>
+<script src="js/spiral.js"></script>
+</html>
