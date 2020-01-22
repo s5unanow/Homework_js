@@ -61,14 +61,24 @@ function createDOMline(lineText, number) {
   return line
 }
 
+function fillSelectorWithCharNames(selector, characters) {
+  characters.forEach(charName => {
+    let option = document.createElement("option");
+    option.setAttribute("value", charName);
+    option.text = charName;
+    selector.add(option);
+  })
+}
+
+const charText = document.getElementById("char-text");
+const selectedChar = document.getElementById("chosen-character");
+fillSelectorWithCharNames(selectedChar, characters);
+
 const charLines = splitAllLines(allLines);
 const charList = createCharList(characters);
 
 const clearedLines = removeNonCharLines(charLines, charList);
 const charListWithLines = assignDataToChars(charList, clearedLines);
-
-const charText = document.getElementById("char-text");
-const selectedChar = document.getElementById("character");
 
 createDOMforChar(selectedChar.value, charListWithLines, charText);
 
@@ -76,3 +86,6 @@ selectedChar.addEventListener("change", () => {
   let charName = selectedChar.value;
   createDOMforChar(charName, charListWithLines, charText);
 });
+
+
+
