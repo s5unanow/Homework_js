@@ -61,12 +61,6 @@ let allLines = `ДЕЙСТВИЕ ПЕРВОЕ
 Лука Лукич. Не приведи Бог служить по ученой части! Всего боишься: всякий мешается, всякому хочется показать, что он тоже умный человек.
 Городничий. Это бы еще ничего, — инкогнито проклятое! Вдруг заглянет: «А, вы здесь, голубчики! А кто, скажет, здесь судья?» — «Ляпкин-Тяпкин». — «А подать сюда Ляпкина-Тяпкина! А кто попечитель богоугодных заведений?» — «Земляника». — «А подать сюда Землянику!» Вот что худо!`;
 
-const charLines = splitAllLines(allLines);
-const charList = createCharList(characters);
-
-const clearedLines = removeNonCharLines(charLines, charList);
-const charListWithLines = assignDataToChars(charList, clearedLines);
-
 function splitAllLines(allLines) {
   return allLines.split("\n")
 }
@@ -105,3 +99,43 @@ function assignDataToChars(charList, charLines) {
   }
   return charListWithLines
 }
+
+function createDOMforChar(charName, charListWithLines, parent) {
+  clearParent(parent);
+
+  let charHeader = document.createElement("h2");
+  charHeader.innerText = `${charName}:`;
+  parent.append(charHeader);
+
+  let charLines = charListWithLines[charName].lines;
+  for (let numLine in charLines) {
+    let line = createDOMline(charLines[numLine], numLine);
+    parent.append(line);
+  }
+}
+
+function clearParent(parent) {
+  parent.innerHTML = "";
+}
+
+function createDOMline(lineText, number) {
+  let line = document.createElement("p");
+  line.innerHTML = `${number}). ${lineText}`;
+  return line
+}
+
+const charLines = splitAllLines(allLines);
+const charList = createCharList(characters);
+
+const clearedLines = removeNonCharLines(charLines, charList);
+const charListWithLines = assignDataToChars(charList, clearedLines);
+
+const charText = document.getElementById("char-text");
+const selectedChar = document.getElementById("character");
+
+createDOMforChar(selectedChar.value, charListWithLines, charText);
+
+selectedChar.addEventListener("change", () => {
+  let charName = selectedChar.value;
+  createDOMforChar(charName, charListWithLines, charText);
+});

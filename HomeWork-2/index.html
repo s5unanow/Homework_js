@@ -9,11 +9,14 @@
 </head>
 <body>
 <form action="#">
-  <textarea name="text" id="text" cols="30" rows="10"></textarea>
-  <button type="button">Parse text</button>
-  <select name="character" id="character"></select>
-  span
+  <label for="character">Choose character: <select name="character" id="character">
+    <option value="Городничий">Городничий</option>
+    <option value="Аммос Федорович">Аммос Федорович</option>
+    <option value="Артемий Филиппович">Артемий Филиппович</option>
+    <option value="Лука Лукич">Лука Лукич</option>
+  </select></label>
 </form>
+<div id="char-text"></div>
 <script src="js/string.js"></script>
 </body>
 </html>
